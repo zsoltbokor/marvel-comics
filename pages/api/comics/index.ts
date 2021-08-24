@@ -7,15 +7,20 @@ import {doCache, isCached} from "../_dbHelper";
 const requestHandler = nc()
     .use(cors())
     .get(async (req, res) => {
+            // @ts-ignore
             const cached = await isCached('comics', 'comics', req.query);
 
             if (cached) {
+                // @ts-ignore
                 return res.status(200).json(cached.data);
             }
 
+            // @ts-ignore
             const result = await makeRequest('comics', req.query);
+            // @ts-ignore
             await doCache('comics', 'comics', req.query, result.data);
 
+            // @ts-ignore
             res.status(200).json(result.data)
         }
     );
