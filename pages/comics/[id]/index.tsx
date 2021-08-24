@@ -2,17 +2,30 @@ import {FC} from "react";
 import {PageComicDetails} from "../../../components/Page/PageComicDetails";
 import {getURL} from "../../../utils/fnUtils";
 
-const ComicDetailPage: FC<{comic}> = ({comic}) => {
+const ComicDetailPage: FC<{ comic }> = ({comic}) => {
 
     return (
-        <PageComicDetails details={comic} />
+        <PageComicDetails details={comic}/>
     )
 }
 
 export default ComicDetailPage;
 
+export const getStaticPaths = async () => {
+    const result = await fetch(getURL(`comics?orderBy=-onsaleDate`), {
+        method: 'GET'
+    });
+    const comics = await result.json();
 
-export const getServerSideProps = async (context) => {
+    return {
+        paths: comics.results.map(comic => {
+            return {params: {id: `${comic.id}`}};
+        }),
+        fallback: true
+    }
+}
+
+export const getStaticProps = async (context) => {
     const result = await fetch(getURL(`comics/${context.params.id}`), {
         method: 'GET'
     });
