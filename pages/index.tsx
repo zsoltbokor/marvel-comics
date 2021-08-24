@@ -9,7 +9,7 @@ const HomePage: FC<{ comics }> = ({comics}) => {
 export default HomePage;
 
 
-export const getServerSideProps = async () => {
+export const getStaticProps = async () => {
     const result = await fetch(getURL(`comics?orderBy=-onsaleDate`), {
         method: 'GET'
     });
@@ -18,6 +18,7 @@ export const getServerSideProps = async () => {
     return {
         props: {
             comics
-        }
+        },
+        revalidate: 60000
     }
 }
