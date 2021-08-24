@@ -1,5 +1,6 @@
 import {FC} from "react";
 import {PageComicDetails} from "../../../components/Page/PageComicDetails";
+import {getURL} from "../../../utils/fnUtils";
 
 const ComicDetailPage: FC<{comic}> = ({comic}) => {
 
@@ -12,7 +13,7 @@ export default ComicDetailPage;
 
 
 export const getServerSideProps = async (context) => {
-    const result = await fetch(`http://localhost:3000/api/comics/${context.params.id}`, {
+    const result = await fetch(getURL(`comics/${context.params.id}`), {
         method: 'GET'
     });
 
