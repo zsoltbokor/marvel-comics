@@ -1,12 +1,11 @@
 import {FC} from "react";
-import { CardWrapper } from "components/Slider/Slider.css";
-import {CardCharacterWrapper} from "./CardCharacter.css";
+import {CardCharacterWrapper, CardHolder, CharacterName} from "./CardCharacter.css";
 
-export const CardCharacter: FC<{data}> = ({data}) => {
-  return (
-      <CardWrapper>
-        <CardCharacterWrapper />
-        <span>{data.name}</span>
-      </CardWrapper>
-  )
+export const CardCharacter: FC<{ data }> = ({data}) => {
+    return (
+        <CardHolder>
+            <CardCharacterWrapper/>
+            <CharacterName>{data.name}</CharacterName>
+        </CardHolder>
+    )
 }

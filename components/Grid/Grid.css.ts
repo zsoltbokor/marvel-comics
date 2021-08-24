@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const GridTitle = styled.h1`
+export const GridTitle = styled.h2`
   color: #CCC;
   text-align: center;
   margin-bottom: 30px;

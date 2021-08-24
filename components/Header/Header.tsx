@@ -16,7 +16,7 @@ export const Header: FC = () => {
                   <Link href={'/stories'}>Stories</Link>
               </li>
               <li>
-                  <Link href={'/creators'}>Creators</Link>
+                  <Link href={'/events'}>Events</Link>
               </li>
           </ul>
       </StyledNav>

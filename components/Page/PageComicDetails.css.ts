@@ -2,10 +2,6 @@ import styled from "styled-components";
 
 export const DetailsWrapper = styled.div`
   display: flex;
-
-  h1 {
-    margin-bottom: 20px;
-  }
 `;
 
 export const DetailImageWrapper = styled.div`
@@ -15,6 +11,11 @@ export const DetailImageWrapper = styled.div`
     width: 100%;
   }
 `
+
+export const SectionTitle = styled.h3`
+  margin-top: 15px;
+  margin-bottom: 10px;
+`;
 
 export const CreatorsWrapper = styled.div`
   margin-top: 25px;
@@ -30,6 +31,19 @@ export const CreatorsList = styled.ul`
   }
 `;
 
+
+export const CharactersWrapper = styled.div`
+  margin-top: 10px;
+`;
+
+export const DetailTitle = styled.h1`
+  margin-bottom: 20px;
+  font-size: 28px;
+`;
+
+export const DetailDescription = styled.p`
+  font-size: 13px;
+`;
 
 export const DetailsInfoWrapper = styled.div`
   width: 70%;

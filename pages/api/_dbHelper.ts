@@ -13,6 +13,8 @@ const runOnDb = async (exec) => {
 }
 
 export const isCached = async (col: string, path: string, queries: { [key: string]: string | number | boolean }) => {
+    console.log('isCached', path + JSON.stringify(queries))
+
     return await runOnDb(async (client)=>{
         return await client.db('marvel')
             .collection(col)

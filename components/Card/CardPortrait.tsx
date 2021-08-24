@@ -1,10 +1,10 @@
 import {FC} from "react";
 import Link from 'next/link';
-import {PortraitCardImage, PortraitCardWrapper, CardTitle} from "./CardSliderPortrait.css";
+import {PortraitCardImage, PortraitCardWrapper, CardTitle} from "./CardPortrait.css";
 
-export const CardSliderPortrait: FC<{data}> = ({data}) => {
+export const CardPortrait: FC<{data}> = ({data}) => {
   return (
-      <Link href={`/comics/${data.id}`}>
+      <Link href={`/${data.domain}/${data.id}`}>
           <PortraitCardWrapper>
               <PortraitCardImage src={`${data?.thumbnail?.path}/portrait_uncanny.jpg`} />
               <CardTitle>{data.title}</CardTitle>

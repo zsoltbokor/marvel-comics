@@ -1,11 +1,12 @@
 import React, {FC} from "react";
 import {GridHolder, GridTitle, GridWrapper, ViewAllButton} from "./Grid.css";
-import {CardSliderPortrait} from "../Card/CardSliderPortrait";
+import {CardPortrait} from "../Card/CardPortrait";
 import Link from "next/link";
 
 type GridProps = {
     data: any;
     title: string;
+    // domain: 'comics' | 'series' | 'events' | 'characters' | 'stories';
     extraButton?: {
         label: string;
         link?: string;
@@ -40,7 +41,7 @@ export const Grid: FC<GridProps> = ({
             <GridWrapper>
                 {data.map((d, i) => {
                     return (
-                        <CardSliderPortrait key={`${d.id}-${i}`} data={d}/>
+                        <CardPortrait key={`${d.id}-${i}`} data={d}/>
                     )
                 })}
             </GridWrapper>

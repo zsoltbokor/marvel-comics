@@ -1,42 +1,43 @@
 import React, {FC} from "react";
-import {CreatorsList, CreatorsWrapper, DetailImageWrapper, DetailsInfoWrapper, DetailsWrapper} from "./PageComicDetails.css";
-import {CardContainer, SliderContainer, SliderTitle} from "../SliderWrapper/SliderWrapper.css";
-import {Slider} from "../Slider/Slider";
+import {
+    CharactersWrapper,
+    CreatorsList,
+    CreatorsWrapper,
+    DetailDescription,
+    DetailImageWrapper,
+    DetailsInfoWrapper,
+    DetailsWrapper,
+    DetailTitle,
+    SectionTitle
+} from "./PageComicDetails.css";
 import {CardCharacter} from "../Card/CardCharacter";
 import Link from "next/link";
+import {getId} from "../../utils/fnUrl";
 
-export const PageComicDetails: FC<{details}> = ({details}) => {
+export const PageComicDetails: FC<{ details }> = ({details}) => {
     return (
         <DetailsWrapper>
             <DetailImageWrapper>
-                <img src={`${details.thumbnail.path}/clean.jpg`} />
+                <img src={`${details.thumbnail.path}/clean.jpg`}/>
             </DetailImageWrapper>
             <DetailsInfoWrapper>
-                <h1>{details.title}</h1>
-                <p>{details.description}</p>
+                <DetailTitle>{details.title}</DetailTitle>
+                <DetailDescription dangerouslySetInnerHTML={{__html: details.description}}/>
 
                 {details.characters.items.length > 0 && (
-                    <SliderContainer>
-                        <SliderTitle>{'Characters'}</SliderTitle>
-                        <CardContainer>
-                            <Slider
-                                arrowLeft={'<'}
-                                arrowRight={'>'}
-                                scrollable
-                            >
-                                {details.characters.items.map((character, i) => <CardCharacter key={`${i}`} data={character} />)}
-                            </Slider>
-                        </CardContainer>
-                    </SliderContainer>
+                    <CharactersWrapper>
+                        <SectionTitle>Characters</SectionTitle>
+                        {details.characters.items.map((character, i) => <CardCharacter key={`${i}`} data={character}/>)}
+                    </CharactersWrapper>
                 )}
 
                 {details.creators.items.length > 0 && (
                     <CreatorsWrapper>
-                        <h3>Creators</h3>
+                        <SectionTitle>Creators</SectionTitle>
                         <CreatorsList>
-                            {details.creators.items.map((creator, i)=>{
+                            {details.creators.items.map((creator, i) => {
                                 return (
-                                    <Link key={`creator-${i}`} href={`/creator/${creator.name}`}>
+                                    <Link key={`creator-${i}`} href={`/creator/${getId(creator.resourceURI)}`}>
                                         <li>
                                             {creator.name}
                                         </li>
