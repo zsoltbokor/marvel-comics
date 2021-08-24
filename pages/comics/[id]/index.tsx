@@ -12,6 +12,9 @@ const ComicDetailPage: FC<{ comic }> = ({comic}) => {
 export default ComicDetailPage;
 
 export const getStaticPaths = async () => {
+
+    console.log('ENV', process.env.NODE_ENV);
+
     const result = await fetch(getURL(`comics?orderBy=-onsaleDate`), {
         method: 'GET'
     });
