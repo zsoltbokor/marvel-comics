@@ -4,8 +4,11 @@ import {getURL} from "../../../utils/fnUtils";
 
 const ComicDetailPage: FC<{ comic }> = ({comic}) => {
 
+
+
     return (
-        <PageComicDetails details={comic}/>
+        // <PageComicDetails details={comic}/>
+        <></>
     )
 }
 
@@ -16,6 +19,8 @@ export const getStaticPaths = async () => {
         method: 'GET'
     });
     const comics = await result.json();
+
+    console.log('getStaticPaths');
 
     return {
         paths: comics.results.map(comic => {
@@ -31,6 +36,8 @@ export const getStaticProps = async (context) => {
     });
 
     const comics = await result.json();
+
+    console.log('getStaticProps');
 
     return {
         props: {
