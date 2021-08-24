@@ -15,15 +15,18 @@ export const CardTitle = styled.span`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  text-align: center;
+  font-size: 13px;
 `;
 
 export const PortraitCardWrapper = styled.div`
-  width: 150px;
-  height: 200px;
-  align-self: center;
-  justify-self: center;
+  width: 190px;
+  height: 300px;
+
   cursor: pointer;
-  background: #000000;
+  
+  padding: 20px;
+  margin: 10px;
   
   &:hover {
     ${CardTitle} {

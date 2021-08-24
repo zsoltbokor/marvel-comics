@@ -1,5 +1,4 @@
 import Router from 'next/router';
-import Head from 'next/head';
 
 import '../styles/globals.css'
 import BasicLayout from "components/Layout/Basic";
@@ -13,12 +12,12 @@ Router.events.on('routeChangeStart', (url) => {
 Router.events.on('routeChangeComplete', () => NProgress.done())
 Router.events.on('routeChangeError', () => NProgress.done())
 
-function MyApp({ Component, pageProps }) {
-  return (
-      <BasicLayout>
-        <Component {...pageProps} />
-      </BasicLayout>
-  )
+function MyApp({Component, pageProps}) {
+    return (
+        <BasicLayout>
+            <Component {...pageProps} />
+        </BasicLayout>
+    )
 }
 
 export default MyApp

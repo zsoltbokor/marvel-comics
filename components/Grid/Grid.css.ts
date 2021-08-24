@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import {Breakpoints, MQ} from "../../style/styled-components/cssMediaQueries";
 
 export const GridTitle = styled.h1`
   color: #CCC;
@@ -8,28 +7,27 @@ export const GridTitle = styled.h1`
 `;
 
 export const GridWrapper = styled.div`
-  margin: 0 auto;
-  width: 100%;
-  display: grid;
-  column-gap: 10px;
-  row-gap: 60px;
-  grid-template-columns: repeat(2, 1fr);
+  display: flex;
+  flex-wrap: wrap;
   justify-content: center;
+`;
 
-  ${MQ(Breakpoints.xxs)} {
-    grid-template-columns: repeat(3, 1fr);
-  }
+export const ViewAllButton = styled.span`
+  display: inline-block;
+  padding: 7px 25px;
+  background: #eee;
+  border-radius: 4px;
+  margin: 40px auto;
+  color: #222;
+  border: 1px solid #222;
+  font-size: 14px;
+  cursor: pointer;
 
-  ${MQ(Breakpoints.s)} {
-    grid-template-columns: repeat(4, 1fr);
+  &:hover {
+    color: #777;
   }
+`;
 
-  ${MQ(Breakpoints.m)} {
-    width: 80%;
-    grid-template-columns: repeat(5, 1fr);
-  }
-
-  ${MQ(Breakpoints.l)} {
-    grid-template-columns: repeat(6, 1fr);
-  }
+export const GridHolder = styled.div`
+  text-align: center;
 `;

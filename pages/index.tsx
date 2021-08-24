@@ -10,7 +10,7 @@ export default HomePage;
 
 
 export const getStaticProps = async () => {
-    const result = await fetch(getURL(`comics?orderBy=-onsaleDate`), {
+    const result = await fetch(getURL(`comics?orderBy=-onsaleDate&limit=6`), {
         method: 'GET'
     });
     const comics = await result.json();

@@ -3,6 +3,6 @@ import {Grid} from "../Grid/Grid";
 
 export const PageHome: FC<{comics}> = ({comics}) => {
     return (
-        <Grid data={comics} title={'Marvel Comics'}/>
+        <Grid data={comics.results} title={'Marvel Comics'} extraButton={{label: 'View all comics', link: '/comics'}}/>
     );
 }

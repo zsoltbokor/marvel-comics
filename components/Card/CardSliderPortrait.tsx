@@ -6,7 +6,7 @@ export const CardSliderPortrait: FC<{data}> = ({data}) => {
   return (
       <Link href={`/comics/${data.id}`}>
           <PortraitCardWrapper>
-              <PortraitCardImage src={`${data.thumbnail.path}/portrait_uncanny.jpg`} />
+              <PortraitCardImage src={`${data?.thumbnail?.path}/portrait_uncanny.jpg`} />
               <CardTitle>{data.title}</CardTitle>
           </PortraitCardWrapper>
       </Link>

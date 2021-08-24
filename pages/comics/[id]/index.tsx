@@ -13,20 +13,6 @@ const ComicDetailPage: FC<{ comic }> = ({comic}) => {
     )
 }
 
-// @ts-ignore
-// ComicDetailPage.getInitialProps = async (context) => {
-//
-//     const result = await fetch(getURL(`comics/${context.query.id}`), {
-//         method: 'GET'
-//     });
-//
-//     const comics = await result.json();
-//
-//     return {
-//         comic: comics.results[0]
-//     }
-// }
-
 export default ComicDetailPage;
 
 export const getStaticPaths = async () => {
@@ -42,7 +28,7 @@ export const getStaticPaths = async () => {
         fallback: true
     }
 }
-//
+
 export const getStaticProps = async (context) => {
     const result = await fetch(getURL(`comics/${context.params.id}`), {
         method: 'GET'
