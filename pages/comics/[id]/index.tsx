@@ -9,26 +9,8 @@ const ComicDetailPage: FC<{ comic }> = ({comic}) => {
     )
 }
 
-export default ComicDetailPage;
-
-export const getStaticPaths = async () => {
-
-    console.log('ENV', process.env.NODE_ENV);
-
-    const result = await fetch(getURL(`comics?orderBy=-onsaleDate`), {
-        method: 'GET'
-    });
-    const comics = await result.json();
-
-    return {
-        paths: comics.results.map(comic => {
-            return {params: {id: `${comic.id}`}};
-        }),
-        fallback: true
-    }
-}
-
-export const getStaticProps = async (context) => {
+// @ts-ignore
+ComicDetailPage.getInitialProps = async (context) => {
     const result = await fetch(getURL(`comics/${context.params.id}`), {
         method: 'GET'
     });
@@ -36,9 +18,37 @@ export const getStaticProps = async (context) => {
     const comics = await result.json();
 
     return {
-        props: {
-            comic: comics.results[0]
-        },
-        revalidate: 60
+        comic: comics.results[0]
     }
 }
+
+export default ComicDetailPage;
+
+// export const getStaticPaths = async () => {
+//     const result = await fetch(getURL(`comics?orderBy=-onsaleDate`), {
+//         method: 'GET'
+//     });
+//     const comics = await result.json();
+//
+//     return {
+//         paths: comics.results.map(comic => {
+//             return {params: {id: `${comic.id}`}};
+//         }),
+//         fallback: true
+//     }
+// }
+//
+// export const getStaticProps = async (context) => {
+//     const result = await fetch(getURL(`comics/${context.params.id}`), {
+//         method: 'GET'
+//     });
+//
+//     const comics = await result.json();
+//
+//     return {
+//         props: {
+//             comic: comics.results[0]
+//         },
+//         revalidate: 60
+//     }
+// }
