@@ -6,9 +6,6 @@ import {CardCharacter} from "../Card/CardCharacter";
 import Link from "next/link";
 
 export const PageComicDetails: FC<{details}> = ({details}) => {
-
-    console.log(details);
-
     return (
         <DetailsWrapper>
             <DetailImageWrapper>
