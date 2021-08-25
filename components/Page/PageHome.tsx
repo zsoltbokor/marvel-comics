@@ -1,7 +1,7 @@
 import {FC} from "react";
 import {Grid} from "../Grid/Grid";
 
-export const PageHome: FC<{comics, series, stories, events}> = ({comics, series, stories, events}) => {
+export const PageHome: FC<{comics, series, events}> = ({comics, series, events}) => {
     return (
         <>
             <Grid
@@ -13,17 +13,6 @@ export const PageHome: FC<{comics, series, stories, events}> = ({comics, series,
                 })}
                 title={'Marvel Comics'}
                 extraButton={{label: 'View all comics', link: '/comics'}}
-            />
-
-            <Grid
-                data={stories.results.map(d => {
-                    return {
-                        ...d,
-                        domain: 'stories'
-                    }
-                })}
-                title={'Marvel Stories'}
-                extraButton={{label: 'View all stories', link: '/stories'}}
             />
 
             <Grid

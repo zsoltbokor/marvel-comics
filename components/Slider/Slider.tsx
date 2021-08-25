@@ -411,21 +411,21 @@ export const Slider: FC<SliderProps> = ({
                 onRightClicked();
             }, autoTimeout);
         }
-    }, [hovered]);
+    }, [hovered, auto, autoTimeout, childCount, onRightClicked]);
 
     useEffect(() => {
         if (infinite && fullScreen && childCount > 1) {
             // scroll in the middle initially
             scrollTo(childCount, false);
         }
-    }, [infinite, fullScreen]);
+    }, [infinite, fullScreen, childCount]);
 
     useEffect(() => {
         const scroller = scrollerRef.current;
         setShowRightArrow(Math.round((scroller?.scrollLeft ?? 0) + (scroller?.clientWidth ?? 0)) < (scroller?.scrollWidth ?? 0));
 
         updateVisibleArea();
-    }, [children]);
+    }, [children, updateVisibleArea]);
 
     useEffect(() => {
         window.addEventListener('resize', updateVisibleArea);
@@ -436,7 +436,7 @@ export const Slider: FC<SliderProps> = ({
                 clearInterval(autoScrollInterval.current);
             }
         };
-    }, []);
+    }, [updateVisibleArea]);
 
     let renderLeftArrow = ((showLeftArrow && renderNavigationArrows) || keepArrows) && childCount > 1 && !isMobile.current;
     let renderRightArrow = ((showRightArrow && renderNavigationArrows) || keepArrows) && childCount > 1 && !isMobile.current;

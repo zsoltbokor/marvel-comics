@@ -29,7 +29,7 @@ export const Grid: FC<GridProps> = ({
         }
 
         return (
-            <Link href={extraButton.link}>
+            <Link href={extraButton.link} passHref>
                 <ViewAllButton>{extraButton.label}</ViewAllButton>
             </Link>
         )

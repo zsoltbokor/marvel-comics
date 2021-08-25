@@ -13,9 +13,6 @@ export const Header: FC = () => {
                   <Link href={'/series'}>Series</Link>
               </li>
               <li>
-                  <Link href={'/stories'}>Stories</Link>
-              </li>
-              <li>
                   <Link href={'/events'}>Events</Link>
               </li>
           </ul>
