@@ -20,7 +20,7 @@ export const Grid: FC<GridProps> = ({
                                         data,
                                         title,
                                         extraButton,
-                                        justifyContent = 'flex-start'
+                                        justifyContent = 'center'
                                     }) => {
 
 
