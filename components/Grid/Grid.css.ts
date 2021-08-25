@@ -30,4 +30,5 @@ export const ViewAllButton = styled.span`
 
 export const GridHolder = styled.div`
   text-align: center;
+  margin-top: 25px;
 `;

@@ -1,10 +1,17 @@
 import {FC} from "react";
 import {getURL} from "../../utils/fnUtils";
 import {PageGrid} from "../../components/Page/PageGrid";
+import Head from "next/head";
 
 const SeriesPage: FC<{ series }> = ({series}) => {
     return (
-        <PageGrid data={series} title={'All series'} domain={'series'}/>
+        <>
+            <Head>
+                <title>Series - Marvel Universe</title>
+                <meta name="description" content="Marvel series" />
+            </Head>
+            <PageGrid data={series} title={'All series'} domain={'series'}/>
+        </>
     );
 }
 

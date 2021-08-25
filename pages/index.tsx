@@ -1,12 +1,21 @@
 import {FC} from "react";
+import Head from 'next/head'
 import {PageHome} from "../components/Page/PageHome";
 import {getURL} from "../utils/fnUtils";
 
 const HomePage: FC<{ comics, series, events }> = ({comics, series, events}) => {
-    return <PageHome comics={comics}
-                     series={series}
-                     events={events}
-    />;
+    return (
+        <>
+            <Head>
+                <title>Welcome to Marvel Universe</title>
+                <meta name="description" content="Don't miss any goodies" />
+            </Head>
+            <PageHome comics={comics}
+                      series={series}
+                      events={events}
+            />
+        </>
+    );
 };
 
 export default HomePage;

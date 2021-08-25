@@ -1,6 +1,7 @@
 import {FC} from "react";
 import {PageComicDetails} from "../../../components/Page/PageComicDetails";
 import {getURL} from "../../../utils/fnUtils";
+import Head from "next/head";
 
 const ComicDetailPage: FC<{ comic }> = ({comic}) => {
 
@@ -9,7 +10,13 @@ const ComicDetailPage: FC<{ comic }> = ({comic}) => {
     }
 
     return (
-        <PageComicDetails details={comic}/>
+        <>
+            <Head>
+                <title>{`${comic.title} - Comics - Marvel Universe`}</title>
+                <meta name="description" content={comic.description} />
+            </Head>
+            <PageComicDetails details={comic}/>
+        </>
     )
 }
 

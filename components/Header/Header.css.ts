@@ -24,3 +24,7 @@ export const StyledNav = styled.nav`
     }
   }
 `;
+
+export const HeaderWrapper = styled.div`
+  position: relative;
+`;

@@ -2,7 +2,7 @@ import React, {FC} from "react";
 import {GridHolder, GridTitle, GridWrapper, ViewAllButton} from "./Grid.css";
 import {CardPortrait} from "../Card/CardPortrait";
 import Link from "next/link";
-import {LoadingIcon} from "../../styles/reusable";
+import {LoadingIcon} from "../../style/reusable";
 
 type GridProps = {
     data: any;
