@@ -26,6 +26,9 @@ export const Header: FC = () => {
                         <li>
                             <Link href={'/events'}>Events</Link>
                         </li>
+                        <li>
+                            <Link href={'/characters'}>Characters</Link>
+                        </li>
                     </ul>
                 </StyledNav>
                 <Search />

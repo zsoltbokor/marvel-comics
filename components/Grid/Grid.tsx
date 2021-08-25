@@ -1,13 +1,14 @@
-import React, {FC} from "react";
+import React, {FC, FunctionComponent} from "react";
 import {GridHolder, GridTitle, GridWrapper, ViewAllButton} from "./Grid.css";
 import {CardPortrait} from "../Card/CardPortrait";
 import Link from "next/link";
 import {LoadingIcon} from "../../style/reusable";
+import {CardCharacter} from "../Card/CardCharacter";
 
 type GridProps = {
     data: any;
     title: string;
-    justifyContent?: 'flex-start' | 'center'
+    justifyContent?: 'flex-start' | 'center';
     extraButton?: {
         label: string;
         link?: string;
@@ -20,7 +21,7 @@ export const Grid: FC<GridProps> = ({
                                         data,
                                         title,
                                         extraButton,
-                                        justifyContent = 'center'
+                                        justifyContent = 'center',
                                     }) => {
 
 
@@ -48,6 +49,11 @@ export const Grid: FC<GridProps> = ({
             <GridTitle>{title}</GridTitle>
             <GridWrapper justifyContent={justifyContent}>
                 {data.map((d, i) => {
+
+                    if(d.domain === 'characters') {
+                        return <CardCharacter key={`${d.id}-${i}`} data={d} context={'grid'} />
+                    }
+
                     return (
                         <CardPortrait key={`${d.id}-${i}`} data={d}/>
                     )

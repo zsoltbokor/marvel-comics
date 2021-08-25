@@ -32,6 +32,10 @@ export const DataList = styled.ul`
     font-size: 12px;
     cursor: pointer;
     line-height: 20px;
+    
+    &:hover {
+      text-decoration: underline;
+    }
   }
 `;
 
@@ -61,6 +65,7 @@ export const DetailsInfoWrapper = styled.div`
 
 export const DetailsWrapper = styled.div<{imageError: boolean}>`
   display: block;
+  padding: 0 20px;
   
   ${props => props.imageError ? 
         css`

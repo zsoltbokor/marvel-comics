@@ -6,8 +6,8 @@ import NProgress from 'nprogress';
 export const PageGrid: FC<{
     data,
     title: string,
-    domain: 'series' | 'comics' | 'events' | 'stories',
-    additionalFilter?: string
+    domain: 'series' | 'comics' | 'events' | 'stories' | 'characters',
+    additionalFilter?: string,
 }> = ({
           data,
           title,
@@ -27,7 +27,7 @@ export const PageGrid: FC<{
         setLoading(true);
 
         clearTimeout(loadTimeout.current);
-        loadTimeout.current = setTimeout(()=>{
+        loadTimeout.current = setTimeout(() => {
             NProgress.done()
             setLoading(false);
         }, 10000);
@@ -46,7 +46,7 @@ export const PageGrid: FC<{
     }
 
 
-    useEffect(()=>{
+    useEffect(() => {
         return () => {
             clearTimeout(loadTimeout.current);
         }
