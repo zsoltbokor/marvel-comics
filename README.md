@@ -19,3 +19,10 @@ Once that is done, copy the _.env.sample.local_ to _.env.local_ and complete the
 Use _npm run dev_ to run it locally.
 
 Other scripts can be found in the _package.json_
+
+
+# TODO:
+
+- complete detail pages
+- create component stories
+- add cypress tests
