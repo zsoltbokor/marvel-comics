@@ -4,7 +4,7 @@ export const StyledNav = styled.nav`
   background: #191919;
   display: flex;
   justify-content: center;
-  padding: 10px 0;
+  padding: 20px 0 3px 0;
   color: #eee;
   border-bottom: 1px solid #111;
   
@@ -27,4 +27,10 @@ export const StyledNav = styled.nav`
 
 export const HeaderWrapper = styled.div`
   position: relative;
+`;
+
+export const Logo = styled.div`
+  cursor: pointer;
+  margin: 0 auto;
+  text-align: center;
 `;
