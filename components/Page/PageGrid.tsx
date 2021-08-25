@@ -1,4 +1,4 @@
-import {FC, useState} from "react";
+import {FC, useEffect, useRef, useState} from "react";
 import {Grid} from "../Grid/Grid";
 import {getURL} from "../../utils/fnUtils";
 import NProgress from 'nprogress';
@@ -16,19 +16,41 @@ export const PageGrid: FC<{
       }) => {
 
     const [additionalItems, setAdditionalItems] = useState([]);
+    const [loading, setLoading] = useState(false);
+
+    const loadTimeout = useRef<NodeJS.Timeout>();
 
     const totalLoaded = data.results.length + additionalItems.length;
 
     const loadMore = async () => {
-        NProgress.start()
+        NProgress.start();
+        setLoading(true);
+
+        clearTimeout(loadTimeout.current);
+        loadTimeout.current = setTimeout(()=>{
+            NProgress.done()
+            setLoading(false);
+        }, 10000);
+
         const result = await fetch(getURL(`${domain}?offset=${totalLoaded}&${additionalFilter}`), {
             method: 'GET'
         });
+
         const data = await result.json();
 
         setAdditionalItems([...additionalItems, ...data.results]);
+
+        clearTimeout(loadTimeout.current);
         NProgress.done()
+        setLoading(false);
     }
+
+
+    useEffect(()=>{
+        return () => {
+            clearTimeout(loadTimeout.current);
+        }
+    }, []);
 
 
     return (
@@ -46,7 +68,8 @@ export const PageGrid: FC<{
                     onClick: (e) => {
                         loadMore().catch(() => {
                         });
-                    }
+                    },
+                    loading
                 } : null
             }/>
     );

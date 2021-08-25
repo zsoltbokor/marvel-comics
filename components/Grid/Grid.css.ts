@@ -6,10 +6,10 @@ export const GridTitle = styled.h2`
   margin-bottom: 30px;
 `;
 
-export const GridWrapper = styled.div`
+export const GridWrapper = styled.div<{justifyContent: 'flex-start' | 'center'}>`
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: ${props => props.justifyContent};
 `;
 
 export const ViewAllButton = styled.span`

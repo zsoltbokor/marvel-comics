@@ -13,6 +13,7 @@ export const PageHome: FC<{comics, series, events}> = ({comics, series, events})
                 })}
                 title={'Marvel Comics'}
                 extraButton={{label: 'View all comics', link: '/comics'}}
+                justifyContent={'center'}
             />
 
             <Grid
@@ -24,6 +25,7 @@ export const PageHome: FC<{comics, series, events}> = ({comics, series, events})
                 })}
                 title={'Marvel Series'}
                 extraButton={{label: 'View all series', link: '/series'}}
+                justifyContent={'center'}
             />
 
             <Grid
@@ -35,6 +37,7 @@ export const PageHome: FC<{comics, series, events}> = ({comics, series, events})
                 })}
                 title={'Marvel Events'}
                 extraButton={{label: 'View all events', link: '/events'}}
+                justifyContent={'center'}
             />
         </>
     );

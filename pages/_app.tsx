@@ -1,6 +1,5 @@
 import Router from 'next/router';
 
-import '../styles/globals.css'
 import BasicLayout from "components/Layout/Basic";
 
 import NProgress from 'nprogress';

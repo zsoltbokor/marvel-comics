@@ -44,53 +44,56 @@ export const PortraitCardWrapper = styled.div`
     height: 253px;
   }
   
-  ${MQ("1112px")} {
+  ${MQ("840px")} {
     width: 200px;
     height: 266px;
   }
 
-  ${MQ("1154px")} {
+  ${MQ("880px")} {
     width: 220px;
     height: 293px;
   }
 
-  ${MQ("1145px")} {
+  ${MQ("960px")} {
     width: 230px;
     height: 306px;
   }
 
-  ${MQ("1288px")} {
+  ${MQ("1000px")} {
     width: 240px;
     height: 320px;
   }
 
-  ${MQ("1334px")} {
+  ${MQ("1040px")} {
     width: 250px;
     height: 333px;
   }
 
-  ${MQ("1378px")} {
+  ${MQ("1080px")} {
     width: 255px;
     height: 340px;
   }
 
-  ${MQ("1400px")} {
+  ${MQ("1100px")} {
     padding: 28px;
     width: 260px;
     height: 346px;
   }
 
-  ${MQ("1494px")} {
-    width: 190px;
+  ${MQ("1120px")} {
+    padding: 28px;
+    width: 275px;
+    height: 360px;
+  }
+
+  ${MQ("1180px")} {
+    width: 170px;
     padding: 7px;
-    height: 253px;
+    height: 245px;
   }
 
   ${MQ("1540px")} {
-    padding: 10px;
-  }
-
-  ${MQ("1590px")} {
-    padding: 14px;
+    width: 170px;
+    height: 253px;
   }
 `;

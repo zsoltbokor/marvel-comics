@@ -8,15 +8,14 @@ import {doCache, isCached} from "./_dbHelper";
 export const makeRequest = async (path, queries: { [key: string]: string | number | boolean }) => {
     const ts = Date.now();
 
-    const publicKey = 'e63ecc58207197ffd5f0e129a1495b28';
-    const privateKey = 'e04f327ffacd708516a793791d1eadbb621e8d73';
+    const {API_PUBLIC_KEY, API_PRIVATE_KEY} = process.env;
 
-    const hash: string = md5(ts + privateKey + publicKey);
+    const hash: string = md5(ts + API_PRIVATE_KEY + API_PUBLIC_KEY);
 
     const urlParams = new URLSearchParams();
 
     urlParams.set('ts', `${ts}`);
-    urlParams.set('apikey', publicKey);
+    urlParams.set('apikey', API_PUBLIC_KEY);
     urlParams.set('hash', hash);
 
     Object.keys(queries).forEach(key => {
@@ -29,6 +28,7 @@ export const makeRequest = async (path, queries: { [key: string]: string | numbe
             'Accept': 'application/json'
         }
     });
+
     return await response.json();
 }
 
@@ -36,16 +36,21 @@ export const getList = (col: string, path: string) => {
     return nc()
         .use(cors())
         .get(async (req: any, res: any) => {
-                const cached = await isCached(col, path, req.query);
+                try {
+                    const cached = await isCached(col, path, req.query);
 
-                if (cached) {
-                    return res.status(200).json(cached.data);
+                    if (cached) {
+                        return res.status(200).json(cached.data);
+                    }
+
+                    const result = await makeRequest(path, req.query);
+
+                    await doCache(col, path, req.query, result.data);
+
+                    res.status(200).json(result.data)
+                } catch (e) {
+                    res.status(500).json(e);
                 }
-
-                const result = await makeRequest(path, req.query);
-                await doCache(col, path, req.query, result.data);
-
-                res.status(200).json(result.data)
             }
         );
 };
@@ -54,19 +59,23 @@ export const getDetails = (col: string, path: string) => {
     return nc()
         .use(cors())
         .get(async (req: any, res: any) => {
-            const queries = {...req.query};
+            try {
+                const queries = {...req.query};
 
-            delete queries.id;
+                delete queries.id;
 
-            const cached = await isCached(col, `${path}/${req.query.id}`, queries);
+                const cached = await isCached(col, `${path}/${req.query.id}`, queries);
 
-            if (cached) {
-                return res.status(200).json(cached.data);
+                if (cached) {
+                    return res.status(200).json(cached.data);
+                }
+
+                const result = await makeRequest(`${path}/${req.query.id}`, queries);
+                await doCache(col, `${path}/${req.query.id}`, queries, result.data);
+
+                res.status(200).json(result.data);
+            } catch (e) {
+                res.status(500).json(e);
             }
-
-            const result = await makeRequest(`${path}/${req.query.id}`, queries);
-            await doCache(col, `${path}/${req.query.id}`, queries, result.data);
-
-            res.status(200).json(result.data);
         });
 }
