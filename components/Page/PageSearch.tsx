@@ -100,7 +100,8 @@ export const PageSearch = () => {
                         )}
                     </>
                 )}
-                {!searching && !hasResult() && <NoResult>Unfortunately there is no result</NoResult>}
+                {!searching && !hasResult() && router.query.q &&
+                <NoResult>No results can be found in the Marvel Universe.</NoResult>}
             </ResultWrapper>
         </Wrapper>
     );
