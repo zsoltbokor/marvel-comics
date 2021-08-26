@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "cy:run": "cypress run",
+    "cy:run": "cypress run --headless",
     "cy:open": "cypress open"
   },
   "dependencies": {
