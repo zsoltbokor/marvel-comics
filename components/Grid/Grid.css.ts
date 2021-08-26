@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
-export const GridTitle = styled.h2`
+export const GridTitle = styled.h2<{align: 'center' | 'left'}>`
   color: #CCC;
-  text-align: center;
+  text-align: ${props => props.align};
   margin-bottom: 30px;
 `;
 

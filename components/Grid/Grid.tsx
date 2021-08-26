@@ -1,4 +1,4 @@
-import React, {FC, FunctionComponent} from "react";
+import React, {FC} from "react";
 import {GridHolder, GridTitle, GridWrapper, ViewAllButton} from "./Grid.css";
 import {CardPortrait} from "../Card/CardPortrait";
 import Link from "next/link";
@@ -9,6 +9,7 @@ type GridProps = {
     data: any;
     title: string;
     justifyContent?: 'flex-start' | 'center';
+    titleAlignment?: 'center' | 'left';
     extraButton?: {
         label: string;
         link?: string;
@@ -21,6 +22,7 @@ export const Grid: FC<GridProps> = ({
                                         data,
                                         title,
                                         extraButton,
+                                        titleAlignment= 'center',
                                         justifyContent = 'center',
                                     }) => {
 
@@ -31,8 +33,9 @@ export const Grid: FC<GridProps> = ({
         if (extraButton.onClick) {
             return (
                 <>
-                    {extraButton.loading && <LoadingIcon />}
-                    {!extraButton.loading && <ViewAllButton onClick={extraButton.onClick}>{extraButton.label}</ViewAllButton>}
+                    {extraButton.loading && <LoadingIcon/>}
+                    {!extraButton.loading &&
+                    <ViewAllButton onClick={extraButton.onClick}>{extraButton.label}</ViewAllButton>}
                 </>
             );
         }
@@ -46,12 +49,12 @@ export const Grid: FC<GridProps> = ({
 
     return (
         <GridHolder>
-            <GridTitle>{title}</GridTitle>
+            <GridTitle align={titleAlignment}>{title}</GridTitle>
             <GridWrapper justifyContent={justifyContent}>
                 {data.map((d, i) => {
 
-                    if(d.domain === 'characters') {
-                        return <CardCharacter key={`${d.id}-${i}`} data={d} context={'grid'} />
+                    if (d.domain === 'characters') {
+                        return <CardCharacter key={`${d.id}-${i}`} data={d} context={'grid'}/>
                     }
 
                     return (

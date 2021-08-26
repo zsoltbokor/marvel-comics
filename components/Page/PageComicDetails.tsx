@@ -40,7 +40,7 @@ export const PageComicDetails: FC<{ details }> = ({details}) => {
                 {details.characters.items.length > 0 && (
                     <CharactersWrapper data-testid={'characters-grid'}>
                         <SectionTitle>Characters</SectionTitle>
-                        {details.characters.items.map((character, i) => <CardCharacter key={`${i}`} data={character}/>)}
+                        {details.characters.items.map((character, i) => <CardCharacter key={`${i}`} data={{...character, domain: 'characters'}}/>)}
                     </CharactersWrapper>
                 )}
 
@@ -52,7 +52,7 @@ export const PageComicDetails: FC<{ details }> = ({details}) => {
                             <DataList>
                                 {details.creators.items.map((creator, i) => {
                                     return (
-                                        <Link key={`creator-${i}`} href={`/creator/${getId(creator.resourceURI)}`}>
+                                        <Link key={`creator-${i}`} href={`/creators/${getId(creator.resourceURI)}`}>
                                             <li>
                                                 {creator.name}
                                             </li>

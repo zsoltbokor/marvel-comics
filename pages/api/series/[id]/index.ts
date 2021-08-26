@@ -1,5 +1,5 @@
 import {getDetails} from "../../_requestHelper";
 
-const requestHandler = getDetails('character_details', 'characters');
+const requestHandler = getDetails('series_details', 'series');
 
 export default requestHandler;

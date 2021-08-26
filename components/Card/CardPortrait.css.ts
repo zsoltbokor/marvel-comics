@@ -5,8 +5,14 @@ export const PortraitCardImage = styled.img`
   width: 100%;
   height: 100%;
   object-fit: fill;
+`;
+
+export const ImageWrapper = styled.div`
+  width: 100%;
+  height: 100%;
   border: 1px solid #333;
   border-radius: 3px;
+  background: #000;
 `;
 
 export const CardTitle = styled.span`
@@ -34,7 +40,7 @@ export const PortraitCardWrapper = styled.div`
       color: #eee;
     }
     
-    ${PortraitCardImage} {
+    ${ImageWrapper} {
       border-color: #eee;
     }
   }

@@ -1,21 +1,23 @@
-import {FC, useState} from "react";
+import {FC, useRef} from "react";
 import Link from 'next/link';
 import {CardCharacterWrapper, CardHolder, CardImage, CharacterName} from "./CardCharacter.css";
+import {getId} from "../../utils/fnUrl";
 
 export const CardCharacter: FC<{ data; context?: 'grid' | 'details' }> = ({data, context = 'details'}) => {
 
-    const [imageError, setImageError] = useState<boolean>(false);
+    const imageRef = useRef<HTMLImageElement>();
 
     return (
-        <Link href={`/${data.domain}/${data.id}`} passHref>
+        <Link href={`/${data.domain}/${data.id || getId(data.resourceURI)}`} passHref>
             <CardHolder context={context} data-testid={'card-character'}>
                 <CardCharacterWrapper context={context}>
-                    {data.thumbnail && !imageError && (
-                        <CardImage
-                            src={`${data?.thumbnail?.path}/portrait_uncanny.jpg`}
-                            onError={()=>setImageError(true)}
-                        />
-                    )}
+                    <CardImage
+                        ref={imageRef}
+                        src={data.thumbnail ? `${data?.thumbnail?.path}/portrait_uncanny.jpg` : '/captain.png'}
+                        onError={() => {
+                            imageRef.current.src = '/captain.png'
+                        }}
+                    />
                 </CardCharacterWrapper>
                 <CharacterName>{data.name}</CharacterName>
             </CardHolder>
