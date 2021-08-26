@@ -7,7 +7,7 @@ import Link from "next/link";
 export const Search: FC = () => {
   return (
       <Link href={'/search'}>
-          <SearchButton>
+          <SearchButton data-testid={'search'}>
               <Icon />
           </SearchButton>
       </Link>

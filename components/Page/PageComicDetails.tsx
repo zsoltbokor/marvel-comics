@@ -34,11 +34,11 @@ export const PageComicDetails: FC<{ details }> = ({details}) => {
                 />
             </DetailImageWrapper>
             <DetailsInfoWrapper>
-                <DetailTitle>{details.title}</DetailTitle>
-                <DetailDescription dangerouslySetInnerHTML={{__html: details.description}}/>
+                <DetailTitle data-testid={'title'}>{details.title}</DetailTitle>
+                <DetailDescription data-testid={'description'} dangerouslySetInnerHTML={{__html: details.description}}/>
 
                 {details.characters.items.length > 0 && (
-                    <CharactersWrapper>
+                    <CharactersWrapper data-testid={'characters-grid'}>
                         <SectionTitle>Characters</SectionTitle>
                         {details.characters.items.map((character, i) => <CardCharacter key={`${i}`} data={character}/>)}
                     </CharactersWrapper>
@@ -47,7 +47,7 @@ export const PageComicDetails: FC<{ details }> = ({details}) => {
 
                 <ListInfo>
                     {details.creators.items.length > 0 && (
-                        <ListWrapper>
+                        <ListWrapper data-testid={'creators-list'}>
                             <SectionTitle>Creators</SectionTitle>
                             <DataList>
                                 {details.creators.items.map((creator, i) => {
@@ -64,7 +64,7 @@ export const PageComicDetails: FC<{ details }> = ({details}) => {
                     )}
 
                     {details.stories.items.length > 0 && (
-                        <ListWrapper>
+                        <ListWrapper data-testid={'stories-list'}>
                             <SectionTitle>Stories</SectionTitle>
                             <DataList>
                                 {details.stories.items.map((story, i) => {

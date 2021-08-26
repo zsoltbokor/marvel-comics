@@ -5,7 +5,7 @@ import {PortraitCardImage, PortraitCardWrapper, CardTitle} from "./CardPortrait.
 export const CardPortrait: FC<{data}> = ({data}) => {
   return (
       <Link href={`/${data.domain}/${data.id}`} passHref>
-          <PortraitCardWrapper>
+          <PortraitCardWrapper data-testid={'card-portrait'}>
               <PortraitCardImage src={`${data?.thumbnail?.path}/portrait_uncanny.jpg`} />
               <CardTitle>{data.title}</CardTitle>
           </PortraitCardWrapper>

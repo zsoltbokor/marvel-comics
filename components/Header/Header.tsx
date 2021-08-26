@@ -15,18 +15,18 @@ export const Header: FC = () => {
             </Logo>
 
             <HeaderWrapper>
-                <StyledNav>
+                <StyledNav className={'navbar'}>
                     <ul>
-                        <li>
+                        <li data-testid={'nav-home'}>
                             <Link href={'/'}>Home</Link>
                         </li>
-                        <li>
+                        <li data-testid={'nav-series'}>
                             <Link href={'/series'}>Series</Link>
                         </li>
-                        <li>
+                        <li data-testid={'nav-events'}>
                             <Link href={'/events'}>Events</Link>
                         </li>
-                        <li>
+                        <li data-testid={'nav-characters'}>
                             <Link href={'/characters'}>Characters</Link>
                         </li>
                     </ul>

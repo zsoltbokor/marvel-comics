@@ -50,7 +50,12 @@ export const PageSearch = () => {
     return (
         <Wrapper>
             <InputWrapper>
-                <SearchInput ref={inputRef} placeholder={'Search comics, events, series'} onKeyDown={onKeyDown}/>
+                <SearchInput
+                    ref={inputRef}
+                    placeholder={'Search comics, events, series'}
+                    onKeyDown={onKeyDown}
+                    data-testid={'search-input'}
+                />
                 <SearchButton onClick={doSearch}>
                     <Icon/>
                 </SearchButton>

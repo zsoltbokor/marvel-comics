@@ -27,4 +27,3 @@ https://marvel-comics-gold.vercel.app
 
 - complete detail pages
 - create component stories
-- add cypress tests
