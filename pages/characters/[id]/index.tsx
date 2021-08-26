@@ -21,31 +21,31 @@ const CharacterDetailPage: FC<{character}> = ({character}) => {
 
 export default CharacterDetailPage;
 
-// export const getStaticPaths = async () => {
-//   const result = await fetch(getURL(`characters`), {
-//     method: 'GET'
-//   });
-//   const characters = await result.json();
-//
-//   return {
-//     paths: characters.results.map(s => {
-//       return {params: {id: `${s.id}`}};
-//     }),
-//     fallback: true
-//   }
-// }
-//
-// export const getStaticProps = async (context) => {
-//   const result = await fetch(getURL(`characters/${context.params.id}`), {
-//     method: 'GET'
-//   });
-//
-//   const characters = await result.json();
-//
-//   return {
-//     props: {
-//       character: characters.results[0]
-//     },
-//     revalidate: 60
-//   }
-// }
+export const getStaticPaths = async () => {
+  const result = await fetch(getURL(`characters`), {
+    method: 'GET'
+  });
+  const characters = await result.json();
+
+  return {
+    paths: characters.results.map(s => {
+      return {params: {id: `${s.id}`}};
+    }),
+    fallback: true
+  }
+}
+
+export const getStaticProps = async (context) => {
+  const result = await fetch(getURL(`characters/${context.params.id}`), {
+    method: 'GET'
+  });
+
+  const characters = await result.json();
+
+  return {
+    props: {
+      character: characters.results[0]
+    },
+    revalidate: 60
+  }
+}
