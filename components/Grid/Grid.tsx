@@ -4,6 +4,7 @@ import {CardPortrait} from "../Card/CardPortrait";
 import Link from "next/link";
 import {LoadingIcon} from "../../style/reusable";
 import {CardCharacter} from "../Card/CardCharacter";
+import {useScreen} from "../../hooks/useScreen";
 
 export type GridProps = {
     data: any;
@@ -26,6 +27,7 @@ export const Grid: FC<GridProps> = ({
                                         justifyContent = 'center',
                                     }) => {
 
+    const {clearStates} = useScreen();
 
     const renderExtraButton = () => {
         if (!extraButton) return null;
@@ -42,7 +44,7 @@ export const Grid: FC<GridProps> = ({
 
         return (
             <Link href={extraButton.link} passHref>
-                <ViewAllButton>{extraButton.label}</ViewAllButton>
+                <ViewAllButton onClick={()=>clearStates(extraButton.link)}>{extraButton.label}</ViewAllButton>
             </Link>
         )
     }
@@ -52,7 +54,6 @@ export const Grid: FC<GridProps> = ({
             <GridTitle align={titleAlignment}>{title}</GridTitle>
             <GridWrapper justifyContent={justifyContent}>
                 {data.map((d, i) => {
-
                     if (d.domain === 'characters') {
                         return <CardCharacter key={`${d.id}-${i}`} data={d} context={'grid'}/>
                     }

@@ -14,6 +14,7 @@ const locationHistory: string[] = [];
 export const useScreen = () => {
     const history = useHistory();
     const location = useLocation();
+
     const locationKey = location?.pathname ?? 'LOCATION';
 
     const storeState = (key: StoreKeys, value: any, setter?: (value: any) => void) => {
