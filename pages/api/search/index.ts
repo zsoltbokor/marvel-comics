@@ -1,6 +1,9 @@
 import {makeRequest} from "../_requestHelper";
 import nc from "next-connect";
 import cors from "cors";
+import NodeCache from "node-cache";
+
+const cache = new NodeCache({stdTTL: 10 * 60 * 1000, checkperiod: 120});
 
 const requestHandler = nc()
     .use(cors())
@@ -10,6 +13,13 @@ const requestHandler = nc()
 
         if (!term) {
             return res.status(400).json({message: "Missing 'q' query"})
+        }
+
+        const cacheKey = `search-${term}`;
+        const memCached = cache.get(cacheKey);
+
+        if (memCached) {
+            return res.status(400).json(memCached);
         }
 
         const result = await Promise.all([
@@ -36,10 +46,10 @@ const requestHandler = nc()
             }),
         ]);
 
-        res.status(200).json({
+        const response = {
             comics: {
                 title: 'Comics',
-                data: result[0].data.results.map(res =>{
+                data: result[0].data.results.map(res => {
                     return {
                         ...res,
                         domain: 'comics'
@@ -48,7 +58,7 @@ const requestHandler = nc()
             },
             events: {
                 title: 'Events',
-                data: result[1].data.results.map(res =>{
+                data: result[1].data.results.map(res => {
                     return {
                         ...res,
                         domain: 'events'
@@ -57,7 +67,7 @@ const requestHandler = nc()
             },
             series: {
                 title: 'Series',
-                data: result[2].data.results.map(res =>{
+                data: result[2].data.results.map(res => {
                     return {
                         ...res,
                         domain: 'series'
@@ -66,14 +76,17 @@ const requestHandler = nc()
             },
             characters: {
                 title: 'Characters',
-                data: result[3].data.results.map(res =>{
+                data: result[3].data.results.map(res => {
                     return {
                         ...res,
                         domain: 'characters'
                     }
                 })
             }
-        })
+        }
+
+        cache.set(cacheKey, response);
+        res.status(200).json(response);
     });
 
 export default requestHandler;
