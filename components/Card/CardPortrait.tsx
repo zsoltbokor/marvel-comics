@@ -15,7 +15,7 @@ export const CardPortrait: FC<{ data }> = ({data}) => {
 
     return (
         <Link href={`/${data.domain}/${data.id || getId(data.resourceURI)}`} passHref>
-            <PortraitCardWrapper data-testid={'card-portrait'}>
+            <PortraitCardWrapper data-testid={'card-portrait'} data-domain={data.domain}>
                 <ImageWrapper>
                     <PortraitCardImage
                         ref={imageRef}

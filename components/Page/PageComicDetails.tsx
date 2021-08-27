@@ -53,7 +53,7 @@ export const PageComicDetails: FC<{ details }> = ({details}) => {
                                 {details.creators.items.map((creator, i) => {
                                     return (
                                         <Link key={`creator-${i}`} href={`/creators/${getId(creator.resourceURI)}`}>
-                                            <li>
+                                            <li data-testid={'creator'}>
                                                 {creator.name}
                                             </li>
                                         </Link>
@@ -69,7 +69,7 @@ export const PageComicDetails: FC<{ details }> = ({details}) => {
                             <DataList>
                                 {details.stories.items.map((story, i) => {
                                     return (
-                                        <li key={`story-${i}`}>
+                                        <li key={`story-${i}`} data-testid={'story'}>
                                             {story.name}
                                         </li>
                                     )

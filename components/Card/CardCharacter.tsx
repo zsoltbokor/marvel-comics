@@ -9,7 +9,7 @@ export const CardCharacter: FC<{ data; context?: 'grid' | 'details' }> = ({data,
 
     return (
         <Link href={`/${data.domain}/${data.id || getId(data.resourceURI)}`} passHref>
-            <CardHolder context={context} data-testid={'card-character'}>
+            <CardHolder context={context} data-testid={'card-character'} data-domain={data.domain}>
                 <CardCharacterWrapper context={context}>
                     <CardImage
                         ref={imageRef}

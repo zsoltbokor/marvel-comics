@@ -41,7 +41,7 @@ export const PageSeriesDetails: FC<{ data }> = ({data}) => {
                         <DataList>
                             {data.stories.items.map((story, i) => {
                                 return (
-                                    <li key={`story-${i}`}>
+                                    <li key={`story-${i}`} data-testid={'story'}>
                                         {story.name}
                                     </li>
                                 )

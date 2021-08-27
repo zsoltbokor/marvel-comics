@@ -13,13 +13,13 @@ import {Grid} from "../Grid/Grid";
 export const PageCharacterDetail: FC<{ character }> = ({character}) => {
     return (
         <Wrapper>
-            <TeaserWrapper>
+            <TeaserWrapper data-testid={'teaser'}>
                 <img src={`${character.thumbnail.path}/landscape_incredible.jpg`}/>
                 <Overlay/>
             </TeaserWrapper>
 
             <InnerWrapper>
-                <DetailsTitle>{character.name}</DetailsTitle>
+                <DetailsTitle data-testid={'title'}>{character.name}</DetailsTitle>
                 <DetailDescription>{character.description}</DetailDescription>
 
                 <Section>
