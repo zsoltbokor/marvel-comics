@@ -16,10 +16,13 @@ export const StyledNav = styled.nav`
       display: inline-block;
       padding: 8px 12px;
       
-      a {
-        &:hover {
-          opacity: 0.5;
-        }
+      &.selected {
+        opacity: 0.6;
+      }
+
+      &:hover {
+        opacity: 0.5;
+        cursor: pointer;
       }
     }
   }

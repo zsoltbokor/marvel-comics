@@ -33,7 +33,7 @@ export const useScreen = () => {
         return screenState?.[pageKey]?.[key] ?? null;
     };
 
-    const emptyStates = (forceKey?: string) => {
+    const clearStates = (forceKey?: string) => {
         const pageKey = forceKey || locationKey;
         if (screenState?.[pageKey]) {
             screenState[pageKey] = {};
@@ -67,6 +67,6 @@ export const useScreen = () => {
         locationAction: history.action,
         storeState,
         obtainState,
-        emptyStates,
+        clearStates,
     };
 };

@@ -2,6 +2,8 @@ import {FC, useEffect, useRef, useState} from "react";
 import {Grid} from "../Grid/Grid";
 import {getURL} from "../../utils/fnUtils";
 import NProgress from 'nprogress';
+import {useDataStore} from "../../providers/DataCache";
+import {useRouter} from "next/router";
 
 export const PageGrid: FC<{
     data,
@@ -15,6 +17,8 @@ export const PageGrid: FC<{
           additionalFilter = ''
       }) => {
 
+    const router = useRouter();
+    const {select, update} = useDataStore();
     const [additionalItems, setAdditionalItems] = useState([]);
     const [loading, setLoading] = useState(false);
 
@@ -37,14 +41,25 @@ export const PageGrid: FC<{
         });
 
         const data = await result.json();
+        const newAdditionalState = [...additionalItems, ...data.results];
 
-        setAdditionalItems([...additionalItems, ...data.results]);
+        setAdditionalItems(newAdditionalState);
+        update(router.pathname, newAdditionalState);
 
         clearTimeout(loadTimeout.current);
         NProgress.done()
         setLoading(false);
     }
 
+    useEffect(() => {
+        if (router.pathname) {
+            const inStore = select(router.pathname);
+
+            if (inStore) {
+                setAdditionalItems(inStore);
+            }
+        }
+    }, [router.pathname]);
 
     useEffect(() => {
         return () => {
