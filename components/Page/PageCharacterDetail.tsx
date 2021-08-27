@@ -11,9 +11,6 @@ import {Overlay} from "../../style/reusable";
 import {Grid} from "../Grid/Grid";
 
 export const PageCharacterDetail: FC<{ character }> = ({character}) => {
-
-    console.log(character);
-
     return (
         <Wrapper>
             <TeaserWrapper>

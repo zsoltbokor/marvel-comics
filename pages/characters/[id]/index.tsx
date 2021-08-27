@@ -11,7 +11,7 @@ const CharacterDetailPage: FC<{character}> = ({character}) => {
   return (
       <>
         <Head>
-          <title>{`${character.name} - Comics - Marvel Universe`}</title>
+          <title>{`${character.name} - Characters - Marvel Universe`}</title>
           <meta name="description" content={character.description} />
         </Head>
         <PageCharacterDetail character={character} />

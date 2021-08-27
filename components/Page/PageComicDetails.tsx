@@ -69,11 +69,9 @@ export const PageComicDetails: FC<{ details }> = ({details}) => {
                             <DataList>
                                 {details.stories.items.map((story, i) => {
                                     return (
-                                        <Link key={`story-${i}`} href={`/stories/${getId(story.resourceURI)}`}>
-                                            <li>
-                                                {story.name}
-                                            </li>
-                                        </Link>
+                                        <li key={`story-${i}`}>
+                                            {story.name}
+                                        </li>
                                     )
                                 })}
                             </DataList>

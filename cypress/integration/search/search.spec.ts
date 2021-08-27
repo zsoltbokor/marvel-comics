@@ -26,6 +26,7 @@ describe('Search page tests', () => {
         cy.contains('Comics').should('exist');
         cy.contains('Events').should('exist');
         cy.contains('Series').should('exist');
+        cy.contains('Characters').should('exist');
     });
 });
 

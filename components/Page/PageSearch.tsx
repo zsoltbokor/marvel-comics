@@ -38,7 +38,21 @@ export const PageSearch = () => {
         setSearching(false);
     }
 
-    const hasResult = () => result != null && (result.comics.length > 0 || result.events.length > 0 || result.series.length > 0);
+    const hasResult = () => {
+        if(!result) {
+            return false;
+        }
+
+        let hasResult = false;
+
+        Object.keys(result).forEach(group => {
+            if(result[group]?.data?.length) {
+                hasResult = true;
+            }
+        })
+
+        return hasResult;
+    };
 
     useEffect(() => {
         if (router.query) {
@@ -52,7 +66,7 @@ export const PageSearch = () => {
             <InputWrapper>
                 <SearchInput
                     ref={inputRef}
-                    placeholder={'Search comics, events, series'}
+                    placeholder={'Search comics, events, series, characters'}
                     onKeyDown={onKeyDown}
                     data-testid={'search-input'}
                 />
@@ -65,44 +79,22 @@ export const PageSearch = () => {
                 {searching && <LoadingIcon/>}
                 {!searching && hasResult() && (
                     <>
-                        {result.comics.length > 0 && (
-                            <Grid
-                                data={result.comics.map(d => {
-                                    return {
-                                        ...d,
-                                        domain: 'comics'
-                                    }
-                                })}
-                                title={'Comics'}
-                                justifyContent={'center'}
-                            />
-                        )}
+                        {
+                            Object.keys(result).map(groupKey => {
+                                if (!result[groupKey].data || !result[groupKey].data.length) {
+                                    return null;
+                                }
 
-                        {result.series.length > 0 && (
-                            <Grid
-                                data={result.series.map(d => {
-                                    return {
-                                        ...d,
-                                        domain: 'series'
-                                    }
-                                })}
-                                title={'Series'}
-                                justifyContent={'center'}
-                            />
-                        )}
-
-                        {result.events.length > 0 && (
-                            <Grid
-                                data={result.events.map(d => {
-                                    return {
-                                        ...d,
-                                        domain: 'events'
-                                    }
-                                })}
-                                title={'Events'}
-                                justifyContent={'center'}
-                            />
-                        )}
+                                return (
+                                    <Grid
+                                        key={groupKey}
+                                        data={result[groupKey].data}
+                                        title={result[groupKey].title}
+                                        justifyContent={'center'}
+                                    />
+                                )
+                            })
+                        }
                     </>
                 )}
                 {!searching && !hasResult() && router.query.q &&

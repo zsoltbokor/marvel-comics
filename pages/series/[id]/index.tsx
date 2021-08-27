@@ -12,7 +12,7 @@ const SeriesDetailPage: FC<{ series }> = ({series}) => {
     return (
         <>
             <Head>
-                <title>{`${series.title} - Comics - Marvel Universe`}</title>
+                <title>{`${series.title} - Series - Marvel Universe`}</title>
                 <meta name="description" content={series.description}/>
             </Head>
             <PageSeriesDetails data={series}/>

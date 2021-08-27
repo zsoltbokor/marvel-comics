@@ -9,8 +9,6 @@ import {
     SectionTitle
 } from "./PageSeriesDetails.css";
 import {Grid} from "../Grid/Grid";
-import Link from "next/link";
-import {getId} from "../../utils/fnUrl";
 
 export const PageSeriesDetails: FC<{ data }> = ({data}) => {
     return (
@@ -21,19 +19,19 @@ export const PageSeriesDetails: FC<{ data }> = ({data}) => {
             {data.comics.items.length > 0 && (
                 <Grid data={data.comics.items.map(c => {
                     return {...c, domain: 'comics'}
-                })} title={'Comics of Series'} justifyContent={'flex-start'} titleAlignment={'left'} />
+                })} title={'Comics of Series'} justifyContent={'flex-start'} titleAlignment={'left'}/>
             )}
 
             {data.characters.items.length > 0 && (
                 <Grid data={data.characters.items.map(c => {
                     return {...c, domain: 'characters'}
-                })} title={'Characters of Series'} justifyContent={'flex-start'} titleAlignment={'left'} />
+                })} title={'Characters of Series'} justifyContent={'flex-start'} titleAlignment={'left'}/>
             )}
 
             {data.events.items.length > 0 && (
                 <Grid data={data.events.items.map(c => {
                     return {...c, domain: 'events'}
-                })} title={'Events of Series'} justifyContent={'flex-start'} titleAlignment={'left'} />
+                })} title={'Events of Series'} justifyContent={'flex-start'} titleAlignment={'left'}/>
             )}
 
             {data.stories.items.length > 0 && (
@@ -43,11 +41,9 @@ export const PageSeriesDetails: FC<{ data }> = ({data}) => {
                         <DataList>
                             {data.stories.items.map((story, i) => {
                                 return (
-                                    <Link key={`story-${i}`} href={`/stories/${getId(story.resourceURI)}`}>
-                                        <li>
-                                            {story.name}
-                                        </li>
-                                    </Link>
+                                    <li key={`story-${i}`}>
+                                        {story.name}
+                                    </li>
                                 )
                             })}
                         </DataList>

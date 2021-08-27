@@ -12,7 +12,7 @@ const requestHandler = nc()
             return res.status(400).json({message: "Missing 'q' query"})
         }
 
-        const requests = [
+        const result = await Promise.all([
             makeRequest('comics', {
                 titleStartsWith: term,
                 orderBy: '-onsaleDate',
@@ -29,14 +29,50 @@ const requestHandler = nc()
                 orderBy: '-modified',
                 limit: 20,
             }),
-        ];
-
-        const result = await Promise.all(requests);
+            makeRequest('characters', {
+                nameStartsWith: term,
+                orderBy: '-modified',
+                limit: 20,
+            }),
+        ]);
 
         res.status(200).json({
-            comics: result[0].data.results,
-            events: result[1].data.results,
-            series: result[2].data.results
+            comics: {
+                title: 'Comics',
+                data: result[0].data.results.map(res =>{
+                    return {
+                        ...res,
+                        domain: 'comics'
+                    }
+                })
+            },
+            events: {
+                title: 'Events',
+                data: result[1].data.results.map(res =>{
+                    return {
+                        ...res,
+                        domain: 'events'
+                    }
+                })
+            },
+            series: {
+                title: 'Series',
+                data: result[2].data.results.map(res =>{
+                    return {
+                        ...res,
+                        domain: 'series'
+                    }
+                })
+            },
+            characters: {
+                title: 'Characters',
+                data: result[3].data.results.map(res =>{
+                    return {
+                        ...res,
+                        domain: 'characters'
+                    }
+                })
+            }
         })
     });
 

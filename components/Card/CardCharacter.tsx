@@ -13,9 +13,9 @@ export const CardCharacter: FC<{ data; context?: 'grid' | 'details' }> = ({data,
                 <CardCharacterWrapper context={context}>
                     <CardImage
                         ref={imageRef}
-                        src={data.thumbnail ? `${data?.thumbnail?.path}/portrait_uncanny.jpg` : '/captain.png'}
+                        src={data.thumbnail ? `${data?.thumbnail?.path}/portrait_uncanny.jpg` : '/character-no-image.png'}
                         onError={() => {
-                            imageRef.current.src = '/captain.png'
+                            imageRef.current.src = '/character-no-image.png'
                         }}
                     />
                 </CardCharacterWrapper>

@@ -1,10 +1,10 @@
 import styled from "styled-components";
 import {MQ} from "../../style/styled-components/cssMediaQueries";
 
-export const PortraitCardImage = styled.img`
+export const PortraitCardImage = styled.img<{objectFill: 'cover' | 'contain'}>`
   width: 100%;
   height: 100%;
-  object-fit: fill;
+  object-fit: ${props => props.objectFill != null ? props.objectFill : 'cover'};
 `;
 
 export const ImageWrapper = styled.div`
