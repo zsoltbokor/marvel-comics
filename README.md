@@ -22,8 +22,3 @@ Other scripts can be found in the _package.json_
 
 ## Demo
 https://marvel-comics-gold.vercel.app
-
-# TODO:
-
-- complete detail pages
-- create component stories

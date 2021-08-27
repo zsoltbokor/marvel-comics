@@ -5,7 +5,7 @@ import Link from "next/link";
 import {LoadingIcon} from "../../style/reusable";
 import {CardCharacter} from "../Card/CardCharacter";
 
-type GridProps = {
+export type GridProps = {
     data: any;
     title: string;
     justifyContent?: 'flex-start' | 'center';
