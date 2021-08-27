@@ -10,7 +10,6 @@ export const TeaserWrapper = styled.div`
   background: #000;
   text-align: center;
   position: relative;
-  margin-top: -40px;
   
   img {
     width: 100%;
