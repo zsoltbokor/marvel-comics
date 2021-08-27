@@ -84,7 +84,7 @@ export const getDetails = (col: string, path: string) => {
                 const cached = await isCached(col, `${path}/${req.query.id}`, queries);
 
                 if (cached) {
-                    cache.set(path + JSON.stringify(queries), cached.data);
+                    cache.set(path + JSON.stringify(req.query), cached.data);
                     return res.status(200).json(cached.data);
                 }
 
