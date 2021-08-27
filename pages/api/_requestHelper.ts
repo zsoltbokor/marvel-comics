@@ -75,7 +75,7 @@ export const getDetails = (col: string, path: string) => {
 
                 delete queries.id;
 
-                const memCached: any = cache.get(path + JSON.stringify(queries));
+                const memCached: any = cache.get(path + JSON.stringify(req.query));
 
                 if (memCached) {
                     return res.status(200).json(memCached)
@@ -90,7 +90,7 @@ export const getDetails = (col: string, path: string) => {
 
                 const result = await makeRequest(`${path}/${req.query.id}`, queries);
                 await doCache(col, `${path}/${req.query.id}`, queries, result.data);
-                cache.set(path + JSON.stringify(queries), result.data);
+                cache.set(path + JSON.stringify(req.query), result.data);
 
                 res.status(200).json(result.data);
             } catch (e) {
