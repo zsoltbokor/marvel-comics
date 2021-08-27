@@ -14,15 +14,12 @@ import Link from "next/link";
 import {getId} from "../../utils/fnUrl";
 
 export const PageCreatorDetail: FC<{ creator }> = ({creator}) => {
-
-    console.log(creator);
-
     const [isImageError, setIsImageError] = useState<boolean>(false);
 
     const imgSrc = `${creator.thumbnail.path}/detail.jpg`;
 
     return (
-        <DetailsWrapper>
+        <DetailsWrapper imageError={isImageError}>
             <DetailImageWrapper>
                 <Image
                     src={imgSrc}

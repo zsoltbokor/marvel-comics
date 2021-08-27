@@ -5,8 +5,6 @@ import {Grid} from "../Grid/Grid";
 
 export const PageEventDetails: FC<{event}> = ({event}) => {
 
-    console.log(event);
-
     return (
         <Wrapper>
             <TeaserWrapper>
