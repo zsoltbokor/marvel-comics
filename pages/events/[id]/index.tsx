@@ -1,19 +1,23 @@
 import {FC} from "react";
-import {getURL} from "../../../utils/fnUtils";
 import {PageEventDetails} from "../../../components/Page/PageEventDetails";
 import Head from "next/head";
 
-const EventDetailPage: FC<{event}> = ({event}) => {
-  return (
-      <>
-        <Head>
-          <title>{`${event.title} - Events - Marvel Universe`}</title>
-          <meta name="description" content={event.description} />
-        </Head>
+const EventDetailPage: FC<{ event }> = ({event}) => {
 
-        <PageEventDetails event={event} />
-      </>
-  )
+    if (!event) {
+        return null;
+    }
+
+    return (
+        <>
+            <Head>
+                <title>{`${event.title} - Events - Marvel Universe`}</title>
+                <meta name="description" content={event.description}/>
+            </Head>
+
+            <PageEventDetails event={event}/>
+        </>
+    )
 }
 
 export default EventDetailPage;
