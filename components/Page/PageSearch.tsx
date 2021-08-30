@@ -21,8 +21,8 @@ export const PageSearch: FC = () => {
     }
 
     const onKeyDown = (e) => {
-        update('search', null);
         if (e.key === 'Enter') {
+            update('search', null);
             doSearch();
         }
     }
