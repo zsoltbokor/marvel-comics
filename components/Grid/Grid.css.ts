@@ -21,6 +21,7 @@ export const ViewAllButton = styled.span`
   color: #222;
   border: 1px solid #222;
   font-size: 14px;
+  font-weight: bold;
   cursor: pointer;
 
   &:hover {

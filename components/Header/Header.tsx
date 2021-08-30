@@ -29,6 +29,11 @@ export const Header: FC = () => {
             link: '/characters',
             label: 'Characters',
             testId: 'nav-characters'
+        },
+        {
+            link: '/about',
+            label: 'About',
+            testId: 'nav-about'
         }
     ];
 

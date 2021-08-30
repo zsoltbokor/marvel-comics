@@ -55,11 +55,11 @@ export const DetailDescription = styled.p`
 
 export const DetailsInfoWrapper = styled.div`
   width: 100%;
-  margin-left: 40px;
   color: #eee;
 
   ${MQ("655px")} {
     width: 70%;
+    margin-left: 40px;
   }
 `;
 

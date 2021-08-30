@@ -6,7 +6,7 @@ export const StyledNav = styled.nav`
   justify-content: center;
   padding: 20px 0 3px 0;
   color: #eee;
-  border-bottom: 1px solid #111;
+  border-bottom: 1px solid #444;
   
   ul {
     list-style: none;
