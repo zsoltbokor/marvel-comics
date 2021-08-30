@@ -51,8 +51,10 @@ export const Header: FC = () => {
     return (
         <>
             <Logo>
-                <Link href={'/'}>
-                    <SiteLogo onClick={() => clearStates('/')}/>
+                <Link href={'/'} passHref>
+                    <span>
+                        <SiteLogo onClick={() => clearStates('/')}/>
+                    </span>
                 </Link>
             </Logo>
 
