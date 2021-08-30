@@ -1,29 +1,19 @@
 import {FC} from "react";
 import {PageSearch} from "../../components/Page/PageSearch";
 import Head from "next/head";
-import {getURL} from "../../utils/fnUtils";
+import {useRouter} from "next/router";
 
-const SearchPage: FC<{result}> = ({result}) => {
+const SearchPage: FC = () => {
+    const router = useRouter();
+
     return (
         <>
             <Head>
-                <title>Search - Marvel Universe</title>
+                <title>{`Search${router?.query?.q ? ` results for ${router.query.q}` : ''} - Marvel Universe`}</title>
             </Head>
-            <PageSearch result={result} />
+            <PageSearch/>
         </>
     );
 }
 
 export default SearchPage;
-
-
-export const getServerSideProps = async (context) => {
-    const response = await fetch(getURL(`search?q=${context.query.q}`));
-    const data = await response.json();
-
-    return {
-        props: {
-            result: data
-        }
-    }
-}
