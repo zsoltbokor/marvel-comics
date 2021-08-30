@@ -5,6 +5,7 @@ import {useRouter} from "next/router";
 import {getURL} from "../../utils/fnUtils";
 import {LoadingIcon} from "../../style/reusable";
 import {Grid} from "../Grid/Grid";
+import {useDataStore} from "../../providers/DataCache";
 
 export const PageSearch: FC = () => {
 
@@ -12,12 +13,15 @@ export const PageSearch: FC = () => {
     const router = useRouter();
     const [searching, setSearching] = useState<boolean>(false);
     const [result, setResult] = useState<any | null>(null);
+    const {select, update} = useDataStore();
 
     const doSearch = () => {
+        update('search', null);
         router.replace(`/search?q=${inputRef.current.value}`);
     }
 
     const onKeyDown = (e) => {
+        update('search', null);
         if (e.key === 'Enter') {
             doSearch();
         }
@@ -30,23 +34,31 @@ export const PageSearch: FC = () => {
 
         inputRef.current.value = router.query.q as string;
 
-        setSearching(true);
-        const response = await fetch(getURL(`search?q=${router.query.q}`));
-        const data = await response.json();
+        const cached = select('search');
 
-        setResult(data);
-        setSearching(false);
+        if (cached) {
+            setResult(cached);
+        } else {
+
+            setSearching(true);
+            const response = await fetch(getURL(`search?q=${router.query.q}`));
+            const data = await response.json();
+
+            setResult(data);
+            setSearching(false);
+            update('search', data);
+        }
     }
 
     const hasResult = () => {
-        if(!result) {
+        if (!result) {
             return false;
         }
 
         let hasResult = false;
 
         Object.keys(result).forEach(group => {
-            if(result[group]?.data?.length) {
+            if (result[group]?.data?.length) {
                 hasResult = true;
             }
         })
