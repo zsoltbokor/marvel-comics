@@ -44,6 +44,11 @@ const requestHandler = nc()
                 orderBy: '-modified',
                 limit: 20,
             }),
+            makeRequest('creators', {
+                nameStartsWith: term,
+                orderBy: '-modified',
+                limit: 20,
+            }),
         ]);
 
         const response = {
@@ -80,6 +85,15 @@ const requestHandler = nc()
                     return {
                         ...res,
                         domain: 'characters'
+                    }
+                })
+            },
+            creators: {
+                title: 'Creators',
+                data: result[4].data.results.map(res => {
+                    return {
+                        ...res,
+                        domain: 'creators'
                     }
                 })
             }
