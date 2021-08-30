@@ -32,7 +32,7 @@ export const getStaticPaths = async () => {
         paths: comics.results.map(comic => {
             return {params: {id: `${comic.id}`}};
         }),
-        fallback: true
+        fallback: 'blocking'
     }
 }
 

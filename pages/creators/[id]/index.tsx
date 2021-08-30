@@ -31,7 +31,7 @@ export const getStaticPaths = async () => {
         paths: creators.results.map(s => {
             return {params: {id: `${s.id}`}};
         }),
-        fallback: true
+        fallback: 'blocking'
     }
 }
 
