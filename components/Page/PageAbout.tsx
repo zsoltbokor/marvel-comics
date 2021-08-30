@@ -11,8 +11,7 @@ export const PageAbout: FC = () => {
             <Label>Version: {packageJson.version}</Label>
 
             <Description>
-                This is an exercising application. The ain purpose of it was to have a use-case where I can try out the
-                NextJS <br/><br/>
+                This is an exercising application. The main purpose of it was to have a project where I could learn NextJS <br/><br/>
                 List of libraries / tools:
             </Description>
 
